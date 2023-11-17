@@ -21,16 +21,19 @@ const BoxSearch = () => {
         placeholder="Tìm kiếm ..."
         onChangeText={updateSearch}
         value={search}
+        inputStyle={{fontSize: 14}}
         containerStyle={{
           width: '100%',
           paddingHorizontal: 20,
           borderColor: 'white',
           backgroundColor: 'transparent',
           borderBottomWidth: 0,
+          borderTopWidth: 0,
         }}
         inputContainerStyle={{
           borderRadius: 20,
           backgroundColor: COLOR.grey,
+          height: 40,
         }}
       />
     </View>

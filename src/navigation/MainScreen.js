@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import MyTab from './MyTab';
 import InfoShip from '../screen/Info/InfoShip';
@@ -13,9 +13,15 @@ import CartScreen from '../screen/CartScreen';
 import BuyScreen from '../screen/BuyScreen';
 import Login from '../screen/Login';
 import SearchScreen from '../screen/SearchScreen';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import Register from '../screen/Register';
 const {height, width} = Dimensions.get('window');
 const Stack = createStackNavigator();
 const MainScreen = () => {
+  const navigate = useNavigation();
+  const {cart, sum} = useSelector(state => state.cartSlice);
+  useEffect(() => {}, [cart]);
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="MyTab" component={MyTab} options={{}} />
@@ -37,16 +43,30 @@ const MainScreen = () => {
                 paddingRight: 10,
               }}>
               <BoxSearch />
-              <TouchableOpacity>
-                <Ionicons
-                  name={'cart-outline'}
-                  size={32}
-                  color={COLOR.primary}
-                />
+              <TouchableOpacity
+                onPress={() => {
+                  navigate.navigate('CartScreen');
+                }}>
+                <Ionicons name={'cart'} size={28} color={COLOR.primary} />
+                {cart.length > 0 && (
+                  <Text
+                    style={{
+                      position: 'absolute',
+                      color: 'white',
+                      right: -5,
+                      top: -5,
+                      backgroundColor: 'red',
+                      borderRadius: 50,
+                      paddingHorizontal: 6,
+                      paddingVertical: 1,
+                      fontSize: 12,
+                    }}>
+                    {sum}
+                  </Text>
+                )}
               </TouchableOpacity>
             </View>
           ),
-          headerRight: () => <View style={{}}></View>,
         }}
       />
       <Stack.Screen
@@ -128,6 +148,15 @@ const MainScreen = () => {
         }}
       />
       <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerShown: false,
+          title: 'Giỏ hàng',
+          headerTintColor: COLOR.primary,
+        }}
+      />
+      <Stack.Screen
         name="SearchScreen"
         component={SearchScreen}
         options={{
@@ -137,8 +166,10 @@ const MainScreen = () => {
           headerTitle: () => (
             <View
               style={{
-                width: '100%',
+                marginLeft: -30,
+                width: 340,
                 flexDirection: 'row',
+                alignItems: 'center',
               }}>
               <BoxSearch />
             </View>
@@ -177,12 +208,31 @@ const MainScreen = () => {
                 paddingRight: 10,
               }}>
               <BoxSearch />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigate.navigate('CartScreen');
+                }}>
                 <Ionicons
                   name={'cart-outline'}
                   size={32}
                   color={COLOR.second}
                 />
+                {cart.length > 0 && (
+                  <Text
+                    style={{
+                      position: 'absolute',
+                      color: 'white',
+                      right: -5,
+                      top: -5,
+                      backgroundColor: 'red',
+                      borderRadius: 50,
+                      paddingHorizontal: 6,
+                      paddingVertical: 1,
+                      fontSize: 12,
+                    }}>
+                    {sum}
+                  </Text>
+                )}
               </TouchableOpacity>
             </View>
           ),

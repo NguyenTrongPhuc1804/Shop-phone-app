@@ -1,4 +1,4 @@
-import {Alert, TouchableOpacity} from 'react-native';
+import {Alert, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -14,12 +14,14 @@ import {removeFavorite} from '../redux/slices/favoriteSlice';
 import HomeNavigation from './HomeNavigation';
 import {createLogicalAnd} from 'typescript';
 import {setActiveDrawer} from '../redux/slices/categorySlice';
+import CartScreen from '../screen/CartScreen';
 const Tab = createBottomTabNavigator();
 
 const MyTab = () => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
+  const {cart, sum} = useSelector(state => state.cartSlice);
 
   return (
     <Tab.Navigator
@@ -45,10 +47,43 @@ const MyTab = () => {
               iconName = focused ? 'person' : 'person-outline';
               break;
             }
+            case 'Thông tin': {
+              iconName = focused ? 'person' : 'person-outline';
+              break;
+            }
+            case 'Giỏ hàng': {
+              iconName = focused ? 'bag-handle' : 'bag-handle-outline';
+              break;
+            }
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+
+          return (
+            <View>
+              <Text>
+                <Ionicons name={iconName} size={size} color={color} />;
+              </Text>
+              {route.name === 'Giỏ hàng' && cart.length > 0 ? (
+                <Text
+                  style={{
+                    position: 'absolute',
+                    color: 'white',
+                    right: -5,
+                    top: -5,
+                    backgroundColor: 'red',
+                    borderRadius: 50,
+                    paddingHorizontal: 6,
+                    paddingVertical: 1,
+                    fontSize: 12,
+                  }}>
+                  {sum}
+                </Text>
+              ) : (
+                ''
+              )}
+            </View>
+          );
         },
         tabBarActiveTintColor: COLOR.primary,
         tabBarInactiveTintColor: 'gray',
@@ -81,13 +116,36 @@ const MyTab = () => {
           headerTitleAlign: 'center',
           header: () => (
             <Header
-              title="Danh mục"
+              title="Cửa hàng"
               icon="filter"
               onPress={() => {
                 navigate.navigate('FilterScreen');
               }}
             />
           ),
+        }}
+      />
+      <Tab.Screen
+        name="Giỏ hàng"
+        component={CartScreen}
+        listeners={{
+          tabPress: e => {
+            dispatch(setActiveDrawer('Trang chủ'));
+          },
+        }}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <Header
+                title="Giỏ hàng"
+                icon="filter"
+                onPress={() => {
+                  navigate.navigate('FilterScreen');
+                }}
+              />
+            );
+          },
         }}
       />
       <Tab.Screen

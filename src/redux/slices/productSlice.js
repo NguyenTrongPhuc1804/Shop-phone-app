@@ -93,7 +93,6 @@ export const getSearchProduct = createAsyncThunk(
     const {data} = await apiMobile.get(
       `mobile/products?search=${payload}&offset=0&sortBy=id&order=asc`,
     );
-    console.log(data);
     return data;
   },
 );

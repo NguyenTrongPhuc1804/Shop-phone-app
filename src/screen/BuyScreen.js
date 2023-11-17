@@ -31,11 +31,9 @@ const BuyScreen = () => {
             title={'Mã giảm giá (nếu có)'}
             placeholder={'Mã giảm giá'}
           />
-          <Text style={styles.label}>Bạn đã được giảm 40000</Text>
         </View>
         <View>
           <InputCus title={'Phí vận chuyển'} placeholder={'Phí vận chuyển'} />
-          <Text style={styles.label}>Bạn đã được giảm 40000</Text>
         </View>
       </View>
       <View

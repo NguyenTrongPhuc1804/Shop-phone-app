@@ -5,7 +5,7 @@ import BoxSearch from './BoxSearch';
 import {COLOR} from '../constant/color';
 
 const Header = ({icon, title, onPress}) => {
-  let iconRight = 'cart-outline';
+  let iconRight = 'cart';
   switch (icon) {
     case 'sort':
       iconRight = 'sort';
@@ -23,14 +23,14 @@ const Header = ({icon, title, onPress}) => {
       break;
   }
   return (
-    <View style={{width: '100%', paddingTop: 20, backgroundColor: 'white'}}>
+    <View style={{width: '100%', paddingTop: 10, backgroundColor: 'white'}}>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
           paddingHorizontal: 20,
         }}>
-        <IconHeader />
+        <IconHeader name={'menu'} />
         <Text style={{fontSize: 22, color: COLOR.primary, fontWeight: '700'}}>
           {title}
         </Text>

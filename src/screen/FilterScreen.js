@@ -34,9 +34,9 @@ const FilterScreen = () => {
         <Text
           style={{
             color: COLOR.black,
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: 'bold',
-            paddingHorizontal: 20,
+            paddingHorizontal: 10,
           }}>
           Lọc theo sản phẩm
         </Text>
@@ -44,7 +44,7 @@ const FilterScreen = () => {
           style={{
             flexWrap: 'wrap',
             flexDirection: 'row',
-            justifyContent: 'space-around',
+            justifyContent: 'flex-start',
             gap: 10,
             marginTop: 10,
           }}>
@@ -88,7 +88,7 @@ const FilterScreen = () => {
         </View>
       </View>
       <View style={{width: '100%', marginTop: 20, paddingHorizontal: 20}}>
-        <Text style={{fontSize: 22, fontWeight: 'bold', color: COLOR.black}}>
+        <Text style={{fontSize: 18, fontWeight: 'bold', color: COLOR.black}}>
           Lọc theo giá
         </Text>
         <View style={{marginTop: 20, height: 80}}>
@@ -111,10 +111,10 @@ const FilterScreen = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <Text style={{fontSize: 18, color: COLOR.primary}}>
+          <Text style={{fontSize: 16, color: COLOR.primary}}>
             Giá từ {fromValue.toLocaleString()} đ
           </Text>
-          <Text style={{fontSize: 18, color: COLOR.primary}}>
+          <Text style={{fontSize: 16, color: COLOR.primary}}>
             Giá từ {toValue.toLocaleString()} đ
           </Text>
         </View>

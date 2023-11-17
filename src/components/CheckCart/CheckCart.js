@@ -1,11 +1,15 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import RatingCus from '../Rating';
 import {useNavigation} from '@react-navigation/native';
 import {COLOR} from '../../constant/color';
+import {useDispatch} from 'react-redux';
+import {addCart, downCart, removeCart} from '../../redux/slices/cartSlice';
 
 const CheckCart = ({item, cart}) => {
   const navigate = useNavigation();
+  const dispatch = useDispatch();
+  const [num, setNum] = useState(item?.quantity || 0);
   return (
     <TouchableOpacity
       onPress={() => {
@@ -45,7 +49,7 @@ const CheckCart = ({item, cart}) => {
         }}>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 'bold',
             marginBottom: 6,
             color: COLOR.black,
@@ -56,7 +60,7 @@ const CheckCart = ({item, cart}) => {
         <Text
           style={{
             textAlign: 'left',
-            fontSize: 16,
+            fontSize: 14,
             marginBottom: 6,
             color: COLOR.black,
           }}
@@ -73,25 +77,35 @@ const CheckCart = ({item, cart}) => {
 
         <Text
           style={{
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: 'bold',
             color: 'red',
             marginBottom: 6,
           }}
           numberOfLines={1}>
-          {item.price.toLocaleString()} VND
+          {cart
+            ? (num * item?.price_sale_off)?.toLocaleString()
+            : item?.price?.toLocaleString()}
+          đ
         </Text>
       </View>
       {cart ? (
         <View
           style={{
-            flex: 1,
+            flex: 2,
             flexDirection: 'row',
-            width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
           <TouchableOpacity
+            onPress={() => {
+              if (num <= 1) {
+                dispatch(removeCart(item.id));
+              } else {
+                setNum(num => (num -= 1));
+                dispatch(downCart({id: item.id, quantity: 1}));
+              }
+            }}
             style={{
               paddingHorizontal: 10,
               paddingVertical: 5,
@@ -106,13 +120,17 @@ const CheckCart = ({item, cart}) => {
           <Text
             style={{
               color: COLOR.black,
-              fontSize: 20,
+              fontSize: 16,
               marginHorizontal: 5,
               fontWeight: 'bold',
             }}>
-            10
+            {num}
           </Text>
           <TouchableOpacity
+            onPress={() => {
+              setNum(num => (num += 1));
+              dispatch(addCart({...item, quantity: 1}));
+            }}
             style={{
               paddingHorizontal: 10,
               paddingVertical: 5,

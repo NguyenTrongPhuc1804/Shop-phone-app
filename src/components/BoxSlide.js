@@ -53,14 +53,17 @@ const BoxSlide = ({cateScreen}) => {
           renderItem={({item}) => (
             <Image
               source={{uri: item.image}}
-              style={{width: '100%', height: '100%', borderRadius: 30}}
+              style={{width: '100%', height: '100%', borderRadius: 20}}
             />
           )}
           sliderWidth={width}
           itemWidth={width / 1.1}
-          keyExtractor={item => item.id}
           onSnapToItem={index => setActiveSlider(index)}
           layout={'stack'}
+          autoplay={true}
+          autoplayDelay={3000}
+          autoplayInterval={3000}
+          loop
         />
         <View style={{position: 'absolute', bottom: 0}}>{PaginationCus()}</View>
       </View>

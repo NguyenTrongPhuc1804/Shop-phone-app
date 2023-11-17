@@ -48,7 +48,7 @@ export default function SkeletonSearch() {
               />
             </View>
             <View style={{}}>
-              <Text
+              {/* <Text
                 numberOfLines={1}
                 style={{
                   fontWeight: 'bold',
@@ -75,7 +75,7 @@ export default function SkeletonSearch() {
                   fontWeight: 'bold',
                   color: 'red',
                   fontSize: 16,
-                }}></Text>
+                }}></Text> */}
             </View>
           </View>
         </View>

@@ -5,16 +5,22 @@ import {COLOR} from '../../constant/color';
 import {useDispatch, useSelector} from 'react-redux';
 import {setFavorite} from '../../redux/slices/favoriteSlice';
 import {useNavigation} from '@react-navigation/native';
+import {addCart} from '../../redux/slices/cartSlice';
 
 const CartProduct = ({item, detail = '50%'}) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
+  const {cart} = useSelector(state => state.cartSlice);
+  console.log(cart);
   const [heart, setHeart] = useState(false);
   const sale = ((item.price - item.price_sale_off) / item.price) * 100;
   const handleHeartActive = () => {
     setHeart(!heart);
     dispatch(setFavorite(item.id));
+  };
+  const handleAddCart = () => {
+    dispatch(addCart({id: item.id, quantity: 1}));
   };
   useEffect(() => {
     favoriteItem.includes(item.id) ? setHeart(true) : setHeart(false);
@@ -23,7 +29,7 @@ const CartProduct = ({item, detail = '50%'}) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigate.navigate('ProductDetail', {id: item.id});
+        navigate.push('ProductDetail', {id: item.id});
       }}
       style={{
         width: detail,
@@ -60,7 +66,7 @@ const CartProduct = ({item, detail = '50%'}) => {
             numberOfLines={1}
             style={{
               fontWeight: 'bold',
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: 'bold',
               color: COLOR.black,
             }}>
@@ -69,7 +75,7 @@ const CartProduct = ({item, detail = '50%'}) => {
           <Text
             numberOfLines={1}
             style={{
-              fontSize: 16,
+              fontSize: 14,
               color: COLOR.black,
             }}>
             {item?.summary}
@@ -78,7 +84,7 @@ const CartProduct = ({item, detail = '50%'}) => {
             numberOfLines={1}
             style={{
               textDecorationLine: 'line-through',
-              fontSize: 16,
+              fontSize: 14,
               color: '#333',
             }}>
             {item?.price.toLocaleString()} đ
@@ -88,7 +94,7 @@ const CartProduct = ({item, detail = '50%'}) => {
             style={{
               fontWeight: 'bold',
               color: 'red',
-              fontSize: 16,
+              fontSize: 14,
             }}>
             {item?.price_sale_off.toLocaleString()} đ
           </Text>
@@ -108,6 +114,7 @@ const CartProduct = ({item, detail = '50%'}) => {
           />
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={handleAddCart}
           style={{
             position: 'absolute',
             padding: 8,
@@ -132,9 +139,9 @@ const CartProduct = ({item, detail = '50%'}) => {
             style={{
               color: 'white',
               fontWeight: 'bold',
-              fontSize: 16,
+              fontSize: 14,
             }}>
-            Sale {Math.floor(sale)} %
+            Sale {Math.floor(sale)}%
           </Text>
         </View>
       </View>

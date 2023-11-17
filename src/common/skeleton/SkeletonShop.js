@@ -230,7 +230,7 @@ export default function SkeletonShop() {
               />
             </View>
             <View style={{}}>
-              <Text
+              {/* <Text
                 numberOfLines={1}
                 style={{
                   fontWeight: 'bold',
@@ -257,7 +257,7 @@ export default function SkeletonShop() {
                   fontWeight: 'bold',
                   color: 'red',
                   fontSize: 16,
-                }}></Text>
+                }}></Text> */}
             </View>
           </View>
         </View>

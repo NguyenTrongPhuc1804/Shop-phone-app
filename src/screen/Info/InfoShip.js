@@ -64,6 +64,7 @@ const InfoShip = () => {
             fontSize: 22,
             fontWeight: 'bold',
             marginBottom: 20,
+            textAlign: 'center',
           }}>
           Thông tin người dùng
         </Text>

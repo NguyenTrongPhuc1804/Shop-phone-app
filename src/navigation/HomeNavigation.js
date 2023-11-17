@@ -7,6 +7,7 @@ import ProductInCategoryScreen from '../screen/ProductInCategoryScreen';
 import Header from '../components/Header';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
+import IconHeader from '../components/IconHeader';
 
 const Stack = createStackNavigator();
 const HomeNavigation = () => {
@@ -38,15 +39,16 @@ const HomeNavigation = () => {
           headerTintColor: COLOR.primary,
           headerTitleAlign: 'center',
           headerRight: () => (
-            <TouchableOpacity
-              style={{marginRight: 10}}
-              onPress={() => {
-                navigate.navigate('FilterScreen');
-              }}>
+            <View style={{marginRight: 10}}>
               <Text>
-                <Ionicons name={'filter'} size={32} color={COLOR.primary} />;
+                <IconHeader
+                  name={'filter'}
+                  onPress={() => {
+                    navigate.navigate('FilterScreen');
+                  }}
+                />
               </Text>
-            </TouchableOpacity>
+            </View>
           ),
         })}
       />

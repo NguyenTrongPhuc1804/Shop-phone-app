@@ -23,7 +23,7 @@ const DrawerScreen = props => {
   useEffect(() => {
     setActive(activeDrawer);
     dispatch(getInfoUser());
-  }, [activeDrawer]);
+  }, [activeDrawer, isLogin]);
   return (
     <View
       style={{flex: 1, position: 'relative', backgroundColor: COLOR.primary}}>
