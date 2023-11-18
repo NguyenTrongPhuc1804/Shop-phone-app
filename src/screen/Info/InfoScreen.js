@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {COLOR} from '../../constant/color';
 import RequestLogin from '../../common/RequestLogin/RequestLogin';
+import SkeletonShop from '../../common/skeleton/SkeletonShop';
 const {height} = Dimensions.get('window');
 const InfoScreen = () => {
   const navigate = useNavigation();

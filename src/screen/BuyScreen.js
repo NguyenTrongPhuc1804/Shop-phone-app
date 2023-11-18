@@ -3,18 +3,59 @@ import React from 'react';
 import InputCus from '../components/Input/InputCus';
 import CartProduct from '../components/CardProduct/CartProduct';
 import {COLOR} from '../constant/color';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {useEffect} from 'react';
+import {removeAllCart, sumTotalCart} from '../redux/slices/cartSlice';
+import {saveCart} from '../redux/slices/buySlice';
+import {Button, Dialog, CheckBox, ListItem, Avatar} from '@rneui/themed';
+import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {showNoti} from '../toolkit/helper';
 const BuyScreen = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigation();
+  const {cart, totalCart} = useSelector(state => state.cartSlice);
+  const {isLogin} = useSelector(state => state.authSlice);
+  const {bill} = useSelector(state => state.buySlice);
+  const [visible, setVisible] = useState(false);
+  const toggleDialog = () => {
+    setVisible(!visible);
+  };
+  const handleBuySuccess = () => {
+    navigate.navigate('Trang chủ');
+    dispatch(removeAllCart());
+  };
+  const handleSaveCart = async () => {
+    if (isLogin) {
+      const newData = await cart.map(item => ({
+        product_id: item.id,
+        quantity: item.quantity,
+      }));
+      dispatch(saveCart({data: newData})).then(res => {
+        if (!res.error) {
+          toggleDialog(true);
+        }
+      });
+    } else {
+      showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
+    }
+  };
+  useEffect(() => {
+    dispatch(sumTotalCart());
+  }, [cart]);
+
   return (
     <View style={{width: '100%', height: '100%'}}>
       <View style={{height: '45%', padding: 10, borderBottomWidth: 1}}>
-        {/* <FlatList
+        <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={imgList}
-          renderItem={({item}) => <CartProduct item={item} detail={200} />}
+          data={cart}
+          renderItem={({item}) => (
+            <CartProduct item={item} detail={180} total />
+          )}
           keyExtractor={item => item.id}
-        /> */}
+        />
       </View>
       <View
         style={{
@@ -23,17 +64,22 @@ const BuyScreen = () => {
           marginTop: 10,
         }}>
         <Text style={styles.text}>Tổng đơn hàng :</Text>
-        <Text style={styles.text}>40000</Text>
+        <Text style={styles.text}>{totalCart.toLocaleString()} đ</Text>
       </View>
       <View style={{paddingHorizontal: 30, marginTop: 20}}>
         <View>
           <InputCus
             title={'Mã giảm giá (nếu có)'}
             placeholder={'Mã giảm giá'}
+            editable={false}
           />
         </View>
         <View>
-          <InputCus title={'Phí vận chuyển'} placeholder={'Phí vận chuyển'} />
+          <InputCus
+            title={'Phí vận chuyển'}
+            placeholder={'15.000 đ'}
+            editable={false}
+          />
         </View>
       </View>
       <View
@@ -44,7 +90,8 @@ const BuyScreen = () => {
           paddingHorizontal: 30,
         }}>
         <TouchableOpacity
-          style={{padding: 20, backgroundColor: COLOR.third, borderRadius: 20}}>
+          onPress={handleSaveCart}
+          style={{padding: 15, backgroundColor: COLOR.third, borderRadius: 20}}>
           <Text
             style={{
               color: 'white',
@@ -56,13 +103,34 @@ const BuyScreen = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      <Dialog isVisible={visible} onBackdropPress={toggleDialog}>
+        <Text
+          style={{
+            color: 'green',
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginBottom: 10,
+          }}>
+          Mua hàng thành công
+        </Text>
+        <Text style={{fontSize: 16, color: COLOR.black}}>
+          Mã đơn hàng của bạn là : {bill.code}
+        </Text>
+        <Text style={{fontSize: 16, color: COLOR.black}}>
+          Tổng hóa đơn bạn là : {bill?.amount?.toLocaleString()} đ
+        </Text>
+        <Dialog.Actions>
+          <Dialog.Button title="Xác nhận" onPress={handleBuySuccess} />
+        </Dialog.Actions>
+      </Dialog>
     </View>
   );
 };
 const styles = StyleSheet.create({
   text: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 'bold',
+    color: COLOR.black,
   },
   label: {
     color: 'red',

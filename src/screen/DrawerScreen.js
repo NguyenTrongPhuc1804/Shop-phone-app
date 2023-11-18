@@ -65,6 +65,11 @@ const DrawerScreen = props => {
           />
           <DrawerItemComponent
             active={active}
+            name={'Giỏ hàng'}
+            setActive={setActive}
+          />
+          <DrawerItemComponent
+            active={active}
             name={'Yêu thích'}
             setActive={setActive}
           />

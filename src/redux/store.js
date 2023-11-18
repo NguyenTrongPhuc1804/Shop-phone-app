@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import authSlice from './slices/authSlice';
+import buySlice from './slices/buySlice';
 import cartSlice from './slices/cartSlice';
 import categorySlice from './slices/categorySlice';
 import favoriteSlice from './slices/favoriteSlice';
@@ -16,7 +17,7 @@ import userSlice from './slices/userSlice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['authSlice', 'favoriteSlice'],
+  whitelist: ['authSlice', 'favoriteSlice', 'cartSlice'],
 };
 const rootReducer = combineReducers({
   sliderSlice,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   authSlice,
   userSlice,
   cartSlice,
+  buySlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({

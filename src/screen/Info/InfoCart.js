@@ -52,7 +52,7 @@ const InfoCart = () => {
           style={{
             fontSize: 22,
             fontWeight: 'bold',
-            marginBottom: 20,
+            marginBottom: 22,
             color: COLOR.black,
           }}>
           Đơn hàng của bạn

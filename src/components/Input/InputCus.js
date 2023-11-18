@@ -2,8 +2,16 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLOR} from '../../constant/color';
+import {editable} from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
 
-const InputCus = ({password, title, placeholder, onChange, value}) => {
+const InputCus = ({
+  password,
+  title,
+  placeholder,
+  onChange,
+  value,
+  editable,
+}) => {
   const [eye, setEye] = useState(true);
   return (
     <View style={{marginBottom: 10, position: 'relative', width: '100%'}}>
@@ -34,6 +42,7 @@ const InputCus = ({password, title, placeholder, onChange, value}) => {
         secureTextEntry={password ? eye : false}
         placeholder={placeholder}
         onChangeText={value => onChange(value)}
+        editable={editable}
       />
       {password ? (
         <TouchableOpacity

@@ -7,7 +7,7 @@ import {setFavorite} from '../../redux/slices/favoriteSlice';
 import {useNavigation} from '@react-navigation/native';
 import {addCart} from '../../redux/slices/cartSlice';
 
-const CartProduct = ({item, detail = '50%'}) => {
+const CartProduct = ({item, detail = '50%', total}) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
@@ -20,7 +20,7 @@ const CartProduct = ({item, detail = '50%'}) => {
     dispatch(setFavorite(item.id));
   };
   const handleAddCart = () => {
-    dispatch(addCart({id: item.id, quantity: 1}));
+    dispatch(addCart({...item, quantity: 1}));
   };
   useEffect(() => {
     favoriteItem.includes(item.id) ? setHeart(true) : setHeart(false);
@@ -61,7 +61,7 @@ const CartProduct = ({item, detail = '50%'}) => {
             }}
           />
         </View>
-        <View style={{paddingLeft: 10}}>
+        <View style={total ? {alignItems: 'center'} : {paddingLeft: 10}}>
           <Text
             numberOfLines={1}
             style={{
@@ -80,6 +80,18 @@ const CartProduct = ({item, detail = '50%'}) => {
             }}>
             {item?.summary}
           </Text>
+          {total ? (
+            <Text
+              numberOfLines={1}
+              style={{
+                fontSize: 14,
+                color: COLOR.black,
+              }}>
+              Số lượng : {item?.quantity}
+            </Text>
+          ) : (
+            ''
+          )}
           <Text
             numberOfLines={1}
             style={{
@@ -113,18 +125,22 @@ const CartProduct = ({item, detail = '50%'}) => {
             color={'red'}
           />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleAddCart}
-          style={{
-            position: 'absolute',
-            padding: 8,
-            backgroundColor: 'white',
-            borderRadius: 10,
-            bottom: 0,
-            right: 0,
-          }}>
-          <Ionicons name={'cart'} size={26} color={'red'} />
-        </TouchableOpacity>
+        {total ? (
+          ''
+        ) : (
+          <TouchableOpacity
+            onPress={handleAddCart}
+            style={{
+              position: 'absolute',
+              padding: 8,
+              backgroundColor: 'white',
+              borderRadius: 10,
+              bottom: 0,
+              right: 0,
+            }}>
+            <Ionicons name={'cart'} size={26} color={'red'} />
+          </TouchableOpacity>
+        )}
         <View
           style={{
             position: 'absolute',

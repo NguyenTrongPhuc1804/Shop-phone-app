@@ -20,6 +20,10 @@ const DrawerItemComponent = ({active, name, setActive}) => {
       label = 'Cửa hàng';
       icon = 'cart';
       break;
+    case 'Giỏ hàng':
+      label = 'Giỏ hàng';
+      icon = 'bag-handle';
+      break;
     case 'Yêu thích':
       label = 'Yêu thích';
       icon = 'heart';

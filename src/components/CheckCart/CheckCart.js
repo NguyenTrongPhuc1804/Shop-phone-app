@@ -1,17 +1,38 @@
-import {View, Text, TouchableOpacity, Image} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, Image, Alert} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import RatingCus from '../Rating';
 import {useNavigation} from '@react-navigation/native';
 import {COLOR} from '../../constant/color';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {addCart, downCart, removeCart} from '../../redux/slices/cartSlice';
 
 const CheckCart = ({item, cart}) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
-  const [num, setNum] = useState(item?.quantity || 0);
+  const [num, setNum] = useState(1);
+
+  useEffect(() => {
+    setNum(item?.quantity);
+  }, [item]);
+
   return (
     <TouchableOpacity
+      onLongPress={() => {
+        if (cart) {
+          Alert.alert(
+            'Thông báo',
+            'Bạn có chắc chắn xóa sản phẩm này khỏi giỏ hàng',
+            [
+              {
+                text: 'Cancel',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+              },
+              {text: 'OK', onPress: () => dispatch(removeCart(item.id))},
+            ],
+          );
+        }
+      }}
       onPress={() => {
         navigate.navigate('ProductDetail', {id: item.id});
       }}

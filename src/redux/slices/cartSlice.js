@@ -6,6 +6,7 @@ import {showNoti, showToast} from '../../toolkit/helper';
 const initialState = {
   cart: [],
   sum: 0,
+  totalCart: 0,
 };
 
 export const cartSlice = createSlice({
@@ -29,6 +30,10 @@ export const cartSlice = createSlice({
     },
     removeCart: (state, action) => {
       state.cart = state.cart.filter(item => item.id !== action.payload);
+      showNoti('Đã xóa sản phẩm khỏi giỏ hàng', 'success');
+    },
+    removeAllCart: (state, action) => {
+      state.cart = [];
     },
     downCart: (state, action) => {
       let index = state.cart.findIndex(item => item.id == action.payload.id);
@@ -38,6 +43,12 @@ export const cartSlice = createSlice({
       }
       state.sum = state.cart.reduce((pre, cur) => pre + cur.quantity, 0);
     },
+    sumTotalCart: (state, action) => {
+      state.totalCart = state.cart.reduce(
+        (pre, cur) => pre + cur.price_sale_off * cur.quantity,
+        0,
+      );
+    },
   },
   extraReducers: builder => {
     builder.addCase(loginSetUser.fulfilled, (state, action) => {});
@@ -46,12 +57,13 @@ export const cartSlice = createSlice({
 export const loginSetUser = createAsyncThunk(
   'auth/loginSetUser',
   async (payload, thunkApi) => {
-    const {data} = await apiMobile.post('auth/login', payload);
+    const {data} = await apiMobile.post('auth/login', {data: payload});
     console.log(data, 'login');
     return data;
   },
 );
 
-export const {addCart, removeCart, downCart} = cartSlice.actions;
+export const {addCart, removeCart, downCart, sumTotalCart, removeAllCart} =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

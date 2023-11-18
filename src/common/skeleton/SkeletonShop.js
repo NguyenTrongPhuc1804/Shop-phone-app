@@ -49,36 +49,7 @@ export default function SkeletonShop() {
                 style={{width: '100%', height: '100%'}}
               />
             </View>
-            <View style={{}}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontSize: 16,
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  textDecorationLine: 'line-through',
-                  fontSize: 16,
-                  color: '#333',
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  color: 'red',
-                  fontSize: 16,
-                }}></Text>
-            </View>
+            <View style={{}}></View>
           </View>
         </View>
         <View
@@ -92,16 +63,7 @@ export default function SkeletonShop() {
               width: '100%',
               height: '100%',
               padding: 10,
-              backgroundColor: 'white',
               borderRadius: 10,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
             }}>
             <View style={{width: '100%', flex: 1, alignItems: 'center'}}>
               <View
@@ -109,36 +71,7 @@ export default function SkeletonShop() {
                 style={{width: '100%', height: '100%'}}
               />
             </View>
-            <View style={{}}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontSize: 16,
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  textDecorationLine: 'line-through',
-                  fontSize: 16,
-                  color: '#333',
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  color: 'red',
-                  fontSize: 16,
-                }}></Text>
-            </View>
+            <View style={{}}></View>
           </View>
         </View>
         <View
@@ -152,16 +85,7 @@ export default function SkeletonShop() {
               width: '100%',
               height: '100%',
               padding: 10,
-              backgroundColor: 'white',
               borderRadius: 10,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
             }}>
             <View style={{width: '100%', flex: 1, alignItems: 'center'}}>
               <View
@@ -169,36 +93,7 @@ export default function SkeletonShop() {
                 style={{width: '100%', height: '100%'}}
               />
             </View>
-            <View style={{}}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontSize: 16,
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  textDecorationLine: 'line-through',
-                  fontSize: 16,
-                  color: '#333',
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  color: 'red',
-                  fontSize: 16,
-                }}></Text>
-            </View>
+            <View style={{}}></View>
           </View>
         </View>
         <View
@@ -212,16 +107,7 @@ export default function SkeletonShop() {
               width: '100%',
               height: '100%',
               padding: 10,
-              backgroundColor: 'white',
               borderRadius: 10,
-              shadowColor: '#000',
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5,
             }}>
             <View style={{width: '100%', flex: 1, alignItems: 'center'}}>
               <View
@@ -229,36 +115,7 @@ export default function SkeletonShop() {
                 style={{width: '100%', height: '100%'}}
               />
             </View>
-            <View style={{}}>
-              {/* <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontSize: 16,
-                  color: COLOR.black,
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  textDecorationLine: 'line-through',
-                  fontSize: 16,
-                  color: '#333',
-                }}></Text>
-              <Text
-                numberOfLines={1}
-                style={{
-                  fontWeight: 'bold',
-                  color: 'red',
-                  fontSize: 16,
-                }}></Text> */}
-            </View>
+            <View style={{}}></View>
           </View>
         </View>
       </View>
