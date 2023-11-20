@@ -14,7 +14,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
   const {cart} = useSelector(state => state.cartSlice);
   console.log(cart);
   const [heart, setHeart] = useState(false);
-  const sale = ((item.price - item.price_sale_off) / item.price) * 100;
+  const sale = ((item?.price - item?.price_sale_off) / item?.price) * 100;
   const handleHeartActive = () => {
     setHeart(!heart);
     dispatch(setFavorite(item.id));
@@ -23,7 +23,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
     dispatch(addCart({...item, quantity: 1}));
   };
   useEffect(() => {
-    favoriteItem.includes(item.id) ? setHeart(true) : setHeart(false);
+    favoriteItem.includes(item?.id) ? setHeart(true) : setHeart(false);
   }, [favoriteItem]);
 
   return (
@@ -99,7 +99,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
               fontSize: 14,
               color: '#333',
             }}>
-            {item?.price.toLocaleString()} đ
+            {item?.price?.toLocaleString()} đ
           </Text>
           <Text
             numberOfLines={1}
@@ -108,7 +108,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
               color: 'red',
               fontSize: 14,
             }}>
-            {item?.price_sale_off.toLocaleString()} đ
+            {item?.price_sale_off?.toLocaleString()} đ
           </Text>
         </View>
         <TouchableOpacity

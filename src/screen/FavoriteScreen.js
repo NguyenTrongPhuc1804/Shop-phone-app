@@ -12,8 +12,6 @@ const FavoriteScreen = () => {
   const {allProduct} = useSelector(state => state.productSlice);
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
   const [items, setItems] = useState([]);
-  console.log(favoriteItem, 'favoriteItem');
-  console.log(allProduct, 'allProduct');
   useEffect(() => {
     let itemFavorite = allProduct?.filter(item =>
       favoriteItem.includes(item.id),

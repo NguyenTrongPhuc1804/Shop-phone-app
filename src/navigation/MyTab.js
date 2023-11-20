@@ -12,7 +12,6 @@ import {COLOR} from '../constant/color';
 import {useDispatch, useSelector} from 'react-redux';
 import {removeFavorite} from '../redux/slices/favoriteSlice';
 import HomeNavigation from './HomeNavigation';
-import {createLogicalAnd} from 'typescript';
 import {setActiveDrawer} from '../redux/slices/categorySlice';
 import CartScreen from '../screen/CartScreen';
 const Tab = createBottomTabNavigator();

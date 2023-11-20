@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import StepIndicator from 'react-native-step-indicator';
 import {COLOR} from '../constant/color';
 const ProgressBarShip = () => {
-  const [currentPosition, setCurrentPosition] = useState(2);
+  const [currentPosition, setCurrentPosition] = useState(1);
   const labels = ['Xác nhận', 'Chuẩn bị', 'Giao hàng', 'Đã nhận'];
   const customStyles = {
     stepIndicatorSize: 25,

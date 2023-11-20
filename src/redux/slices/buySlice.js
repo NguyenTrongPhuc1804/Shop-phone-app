@@ -4,10 +4,11 @@ import {showNoti} from '../../toolkit/helper';
 
 const initialState = {
   bill: [],
+  orderItem: [],
 };
 
 export const buySlice = createSlice({
-  name: 'category',
+  name: 'buy',
   initialState,
   reducers: {
     setActiveDrawer: (state, action) => {
@@ -19,15 +20,30 @@ export const buySlice = createSlice({
       console.log(action, '123');
       state.bill = action.payload;
     });
+    builder.addCase(checkCode.fulfilled, (state, action) => {
+      state.orderItem = action.payload;
+    });
   },
 });
 export const saveCart = createAsyncThunk(
-  'category/getCategory',
+  'buy/saveCart',
   async (payload, thunkApi) => {
     try {
-      console.log(payload, 'payload');
       const {data} = await apiMobile.post('mobile/orders/save', payload);
       showNoti('Mua hàng thành công', 'success');
+      console.log(data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+);
+export const checkCode = createAsyncThunk(
+  'buy/checkCode',
+  async (payload, thunkApi) => {
+    try {
+      const {data} = await apiMobile.get(`mobile/orders/${payload}`);
+      console.log(data, 'checkcode');
       return data;
     } catch (err) {
       console.log(err);

@@ -32,12 +32,13 @@ const BuyScreen = () => {
         quantity: item.quantity,
       }));
       dispatch(saveCart({data: newData})).then(res => {
-        if (!res.error) {
+        if (res.payload) {
+          console.log(res, 'red');
           toggleDialog(true);
+        } else {
+          showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
         }
       });
-    } else {
-      showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
     }
   };
   useEffect(() => {
@@ -114,7 +115,7 @@ const BuyScreen = () => {
           Mua hàng thành công
         </Text>
         <Text style={{fontSize: 16, color: COLOR.black}}>
-          Mã đơn hàng của bạn là : {bill.code}
+          Mã đơn hàng của bạn là : {bill?.code}
         </Text>
         <Text style={{fontSize: 16, color: COLOR.black}}>
           Tổng hóa đơn bạn là : {bill?.amount?.toLocaleString()} đ
