@@ -75,7 +75,6 @@ const InfoCart = () => {
         };
       }
     });
-    console.log(orderArr, 'lor');
 
     setListOrder(orderArr.filter(item => item != undefined));
   }, [orderItem]);

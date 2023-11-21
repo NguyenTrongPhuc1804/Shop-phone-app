@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 export const apiMobile = axios.create({
-  baseURL: '',
+  baseURL: 'https://apiforlearning.zendvn.com/api/',
   headers: {'X-Custom-Header': 'foobar'},
 });
 
