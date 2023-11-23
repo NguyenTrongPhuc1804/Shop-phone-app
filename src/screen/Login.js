@@ -41,7 +41,7 @@ const Login = () => {
     ).then(res => {
       setLoading(false);
       if (!res.error) {
-        navigate.navigate('Trang chủ');
+        navigate.goBack();
         showNoti('Đăng nhập thành công', 'success');
       } else {
         showNoti('Sai mật khẩu hoặc email', 'error');

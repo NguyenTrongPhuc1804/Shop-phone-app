@@ -18,6 +18,9 @@ export const authSlice = createSlice({
       state.userToken = '';
       showNoti('Đăng xuất thành công', 'success');
     },
+    checkLogin: (state, action) => {
+      state.isLogin = action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addCase(loginSetUser.fulfilled, (state, action) => {
@@ -32,11 +35,10 @@ export const loginSetUser = createAsyncThunk(
   'auth/loginSetUser',
   async (payload, thunkApi) => {
     const {data} = await apiMobile.post('auth/login', payload);
-    console.log(data, 'login');
     return data;
   },
 );
 
-export const {logout} = authSlice.actions;
+export const {logout, checkLogin} = authSlice.actions;
 
 export default authSlice.reducer;

@@ -41,7 +41,7 @@ const CartScreen = () => {
           }}
           style={{
             width: '100%',
-            padding: 15,
+            padding: 10,
             backgroundColor: COLOR.third,
             borderRadius: 10,
           }}>

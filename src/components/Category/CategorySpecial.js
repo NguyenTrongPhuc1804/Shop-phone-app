@@ -15,10 +15,10 @@ const CategorySpecial = ({listProduct, title, isSkeleton}) => {
       <View style={{marginTop: 10}}>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 'bold',
             marginBottom: 10,
-            color: COLOR.black,
+            color: COLOR.second,
           }}>
           {title}
         </Text>

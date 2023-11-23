@@ -12,7 +12,6 @@ const CartProduct = ({item, detail = '50%', total}) => {
   const dispatch = useDispatch();
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
   const {cart} = useSelector(state => state.cartSlice);
-  console.log(cart);
   const [heart, setHeart] = useState(false);
   const sale = ((item?.price - item?.price_sale_off) / item?.price) * 100;
   const handleHeartActive = () => {
@@ -105,7 +104,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
             numberOfLines={1}
             style={{
               fontWeight: 'bold',
-              color: 'red',
+              color: COLOR.third,
               fontSize: 14,
             }}>
             {item?.price_sale_off?.toLocaleString()} đ
@@ -122,7 +121,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
           <Ionicons
             name={heart ? 'heart' : 'heart-outline'}
             size={24}
-            color={'red'}
+            color={COLOR.third}
           />
         </TouchableOpacity>
         {total ? (
@@ -138,7 +137,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
               bottom: 0,
               right: 0,
             }}>
-            <Ionicons name={'cart'} size={26} color={'red'} />
+            <Ionicons name={'cart'} size={26} color={COLOR.third} />
           </TouchableOpacity>
         )}
         <View
@@ -155,7 +154,7 @@ const CartProduct = ({item, detail = '50%', total}) => {
             style={{
               color: 'white',
               fontWeight: 'bold',
-              fontSize: 14,
+              fontSize: 12,
             }}>
             Sale {Math.floor(sale)}%
           </Text>

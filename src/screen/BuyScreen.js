@@ -33,7 +33,6 @@ const BuyScreen = () => {
       }));
       dispatch(saveCart({data: newData})).then(res => {
         if (res.payload) {
-          console.log(res, 'red');
           toggleDialog(true);
         } else {
           showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
@@ -92,7 +91,7 @@ const BuyScreen = () => {
         }}>
         <TouchableOpacity
           onPress={handleSaveCart}
-          style={{padding: 15, backgroundColor: COLOR.third, borderRadius: 20}}>
+          style={{padding: 10, backgroundColor: COLOR.third, borderRadius: 10}}>
           <Text
             style={{
               color: 'white',

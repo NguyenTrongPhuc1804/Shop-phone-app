@@ -5,6 +5,10 @@ import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSlider} from '../redux/slices/sliderSlice';
 import SkeletonBanner from '../common/skeleton/SekeletonBanner';
+import img1 from '../assets/image/img1.jpg';
+import img2 from '../assets/image/img2.jpg';
+import img3 from '../assets/image/img3.jpg';
+import img4 from '../assets/image/img4.jpg';
 const {width} = Dimensions.get('window');
 
 const BoxSlide = ({cateScreen}) => {
@@ -12,6 +16,12 @@ const BoxSlide = ({cateScreen}) => {
   const {slider, isLoading} = useSelector(state => state.sliderSlice);
   const [activeSlider, setActiveSlider] = useState(0);
   const [entries, setEntries] = useState(slider?.length);
+  const listSlide = [
+    {id: 1, image: img1},
+    {id: 2, image: img2},
+    {id: 3, image: img3},
+    {id: 4, image: img4},
+  ];
   useEffect(() => {
     dispatch(getSlider());
   }, []);
@@ -40,7 +50,7 @@ const BoxSlide = ({cateScreen}) => {
         style={{
           width: '100%',
           flexDirection: 'row',
-          height: 200,
+          height: 170,
           alignItems: 'center',
           justifyContent: 'center',
           width: width,
@@ -49,17 +59,16 @@ const BoxSlide = ({cateScreen}) => {
         }}>
         <Carousel
           style={{flex: 1}}
-          data={slider}
+          data={listSlide}
           renderItem={({item}) => (
             <Image
-              source={{uri: item.image}}
-              style={{width: '100%', height: '100%', borderRadius: 20}}
+              source={item.image}
+              style={{width: '100%', height: '100%', borderRadius: 10}}
             />
           )}
           sliderWidth={width}
-          itemWidth={width / 1.1}
+          itemWidth={width / 1.3}
           onSnapToItem={index => setActiveSlider(index)}
-          layout={'stack'}
           autoplay={true}
           autoplayDelay={3000}
           autoplayInterval={3000}

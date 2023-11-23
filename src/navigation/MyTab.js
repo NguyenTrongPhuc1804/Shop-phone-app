@@ -21,6 +21,7 @@ const MyTab = () => {
   const dispatch = useDispatch();
   const {favoriteItem} = useSelector(state => state.favoriteSlice);
   const {cart, sum} = useSelector(state => state.cartSlice);
+  const {isLogin, userToken} = useSelector(state => state.authSlice);
 
   return (
     <Tab.Navigator
@@ -195,9 +196,12 @@ const MyTab = () => {
           headerTitleAlign: 'center',
           header: () => (
             <Header
+              icon={isLogin ? 'person-outline' : 'login'}
               title="Thông tin"
               onPress={() => {
-                navigate.navigate('CartScreen');
+                isLogin
+                  ? navigate.navigate('InfoShip')
+                  : navigate.navigate('Login');
               }}
             />
           ),

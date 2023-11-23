@@ -42,14 +42,16 @@ const CheckCart = ({item, cart}) => {
         backgroundColor: COLOR.second,
         flexDirection: 'row',
         padding: 10,
+        backgroundColor: '#508D69',
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
-          height: 2,
+          height: 3,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+
+        elevation: 6,
         borderRadius: 10,
         marginRight: 10,
       }}>
@@ -66,14 +68,14 @@ const CheckCart = ({item, cart}) => {
           flex: 2,
           paddingLeft: 10,
           justifyContent: 'center',
-          color: COLOR.black,
+          color: COLOR.second,
         }}>
         <Text
           style={{
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: 'bold',
             marginBottom: 6,
-            color: COLOR.black,
+            color: COLOR.second,
           }}
           numberOfLines={1}>
           {item.name}
@@ -81,16 +83,16 @@ const CheckCart = ({item, cart}) => {
         <Text
           style={{
             textAlign: 'left',
-            fontSize: 14,
+            fontSize: 12,
             marginBottom: 6,
-            color: COLOR.black,
+            color: COLOR.second,
           }}
           numberOfLines={1}>
           {item.summary}
         </Text>
         {!cart ? (
           <Text numberOfLines={1}>
-            <RatingCus color={COLOR.second} rating={item.rating} />
+            <RatingCus color={COLOR.shadow} rating={item.rating} />
           </Text>
         ) : (
           ''
@@ -100,7 +102,7 @@ const CheckCart = ({item, cart}) => {
           style={{
             fontSize: 14,
             fontWeight: 'bold',
-            color: 'red',
+            color: '#9ADE7B',
             marginBottom: 6,
           }}
           numberOfLines={1}>
@@ -129,7 +131,7 @@ const CheckCart = ({item, cart}) => {
             }}
             style={{
               paddingHorizontal: 10,
-              paddingVertical: 5,
+              paddingVertical: 2,
               backgroundColor: COLOR.third,
               borderRadius: 10,
             }}>
@@ -140,7 +142,7 @@ const CheckCart = ({item, cart}) => {
           </TouchableOpacity>
           <Text
             style={{
-              color: COLOR.black,
+              color: COLOR.second,
               fontSize: 16,
               marginHorizontal: 5,
               fontWeight: 'bold',
@@ -154,7 +156,7 @@ const CheckCart = ({item, cart}) => {
             }}
             style={{
               paddingHorizontal: 10,
-              paddingVertical: 5,
+              paddingVertical: 2,
               backgroundColor: COLOR.third,
               borderRadius: 10,
             }}>

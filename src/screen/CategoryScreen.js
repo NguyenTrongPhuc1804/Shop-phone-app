@@ -8,6 +8,7 @@ import {useEffect} from 'react';
 import {useRoute} from '@react-navigation/native';
 import {useState} from 'react';
 import SkeletonShop from '../common/skeleton/SkeletonShop';
+import {COLOR} from '../constant/color';
 
 const CategoryScreen = () => {
   const dispatch = useDispatch();
@@ -63,7 +64,18 @@ const CategoryScreen = () => {
     return <SkeletonShop />;
   } else {
     return (
-      <View style={{}}>
+      <View style={{backgroundColor: COLOR.primary}}>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: COLOR.second,
+            paddingHorizontal: 10,
+            marginTop: 20,
+            marginBottom: 10,
+          }}>
+          Tất cả sản phẩm
+        </Text>
         <FlatList
           columnWrapperStyle={{paddingHorizontal: 10, marginTop: 10}}
           showsVerticalScrollIndicator={false}

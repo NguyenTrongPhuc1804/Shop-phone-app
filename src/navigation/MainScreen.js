@@ -12,14 +12,15 @@ import FilterScreen from '../screen/FilterScreen';
 import CartScreen from '../screen/CartScreen';
 import BuyScreen from '../screen/BuyScreen';
 import Login from '../screen/Login';
+import {logout} from '../redux/slices/authSlice';
 import SearchScreen from '../screen/SearchScreen';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Register from '../screen/Register';
-const {height, width} = Dimensions.get('window');
 const Stack = createStackNavigator();
 const MainScreen = () => {
   const navigate = useNavigation();
+  const dispatch = useDispatch();
   const {cart, sum} = useSelector(state => state.cartSlice);
   useEffect(() => {}, [cart]);
   return (
@@ -45,25 +46,10 @@ const MainScreen = () => {
               <BoxSearch />
               <TouchableOpacity
                 onPress={() => {
-                  navigate.navigate('CartScreen');
+                  dispatch(logout());
+                  navigate.navigate('HomeScreen');
                 }}>
-                <Ionicons name={'cart'} size={28} color={COLOR.primary} />
-                {cart.length > 0 && (
-                  <Text
-                    style={{
-                      position: 'absolute',
-                      color: 'white',
-                      right: -5,
-                      top: -5,
-                      backgroundColor: 'red',
-                      borderRadius: 50,
-                      paddingHorizontal: 6,
-                      paddingVertical: 1,
-                      fontSize: 12,
-                    }}>
-                    {sum}
-                  </Text>
-                )}
+                <Ionicons name={'log-out'} size={28} color={COLOR.primary} />
               </TouchableOpacity>
             </View>
           ),

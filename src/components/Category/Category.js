@@ -23,10 +23,10 @@ const Category = ({}) => {
       <View style={{marginTop: 20}}>
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 'bold',
             marginBottom: 10,
-            color: COLOR.black,
+            color: COLOR.second,
           }}>
           Tất cả danh mục
         </Text>
@@ -43,18 +43,32 @@ const Category = ({}) => {
                 });
               }}
               style={{
-                marginRight: 5,
+                marginRight: 8,
                 borderRadius: 20,
+                marginBottom: 10,
                 flexDirection: 'column',
                 padding: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#739072',
+                width: 80,
+                height: 90,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.27,
+                shadowRadius: 4.65,
+
+                elevation: 6,
               }}>
-              <View style={{width: 80, height: 80}}>
+              <View style={{width: 60, height: 60}}>
                 <Image
                   style={{
                     resizeMode: 'contain',
                     width: '100%',
                     height: '100%',
-                    marginBottom: 10,
                     borderRadius: 10,
                   }}
                   source={{uri: item.image}}
@@ -65,7 +79,8 @@ const Category = ({}) => {
                   textAlign: 'center',
                   fontSize: 12,
                   fontWeight: '600',
-                  color: COLOR.black,
+                  color: COLOR.second,
+                  marginTop: 5,
                 }}>
                 {item.name}
               </Text>

@@ -17,6 +17,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {apiMobile} from '../services/baseService';
 import {getInfoUser} from '../redux/slices/userSlice';
 import {useState} from 'react';
+import {checkLogin} from '../redux/slices/authSlice';
+import {COLOR} from '../constant/color';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -27,16 +29,22 @@ const HomeScreen = () => {
   const [isSkeleton, setIsSkeleton] = useState(true);
   useEffect(() => {
     const setHeader = async () => {
-      apiMobile.interceptors.request.use(
-        async config => {
-          config.headers.Authorization =
-            'Bearer ' + (await AsyncStorage.getItem('access_token'));
-          return config;
-        },
-        function (error) {
-          return Promise.reject(error);
-        },
-      );
+      const access_token = await AsyncStorage.getItem('access_token');
+      if (access_token) {
+        apiMobile.interceptors.request.use(
+          async config => {
+            config.headers.Authorization =
+              'Bearer ' + (await AsyncStorage.getItem('access_token'));
+            return config;
+          },
+          function (error) {
+            return Promise.reject(error);
+          },
+        );
+        dispatch(checkLogin(true));
+      } else {
+        dispatch(checkLogin(false));
+      }
     };
     setHeader();
   }, [userToken]);
@@ -51,8 +59,24 @@ const HomeScreen = () => {
     );
   }, []);
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: COLOR.primary,
+      }}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: COLOR.second,
+            paddingHorizontal: 10,
+            marginTop: 20,
+          }}>
+          Phone store
+        </Text>
         <BoxSlide />
         <View style={{paddingHorizontal: 10}}>
           <Category />

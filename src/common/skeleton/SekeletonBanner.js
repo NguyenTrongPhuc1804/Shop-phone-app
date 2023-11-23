@@ -4,7 +4,7 @@ import {COLOR} from '../../constant/color';
 const {width} = Dimensions.get('window');
 export default function SkeletonBanner() {
   return (
-    <SkeletonPlaceholder borderRadius={4}>
+    <SkeletonPlaceholder borderRadius={4} backgroundColor={COLOR.primary}>
       <View
         style={{
           width: width,

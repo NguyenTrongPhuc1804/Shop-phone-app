@@ -17,11 +17,11 @@ const InfoList = ({name, onPress}) => {
         borderColor: COLOR.primary,
         paddingVertical: 20,
       }}>
-      <FontAwesome5 name={name} size={30} color={COLOR.primary} />
-      <Text style={{fontSize: 18, fontWeight: 'bold', color: COLOR.black}}>
+      <FontAwesome5 name={name} size={28} color={COLOR.primary} />
+      <Text style={{fontSize: 16, fontWeight: 'bold', color: COLOR.black}}>
         Thông tin giao hàng
       </Text>
-      <Ionicons name={'chevron-forward'} size={34} color={COLOR.primary} />
+      <Ionicons name={'chevron-forward'} size={28} color={COLOR.primary} />
     </TouchableOpacity>
   );
 };

@@ -11,7 +11,7 @@ import {COLOR} from '../../constant/color';
 const {width} = Dimensions.get('window');
 export default function SkeletonCategorySpecial() {
   return (
-    <SkeletonPlaceholder borderRadius={4}>
+    <SkeletonPlaceholder borderRadius={4} backgroundColor={COLOR.primary}>
       <Text
         style={{
           fontSize: 18,

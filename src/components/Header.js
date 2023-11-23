@@ -19,6 +19,9 @@ const Header = ({icon, title, onPress}) => {
     case 'filter':
       iconRight = 'filter';
       break;
+    case 'login':
+      iconRight = 'log-in';
+      break;
     default:
       break;
   }

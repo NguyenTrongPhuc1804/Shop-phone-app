@@ -15,7 +15,6 @@ export const cartSlice = createSlice({
   reducers: {
     addCart: (state, action) => {
       let index = state.cart.findIndex(item => item.id == action.payload.id);
-      console.log(index);
       if (index != -1) {
         state.cart[index].quantity += action.payload.quantity;
         showNoti('Đã thay đổi số lượng sản phẩm', 'success');
@@ -58,7 +57,6 @@ export const loginSetUser = createAsyncThunk(
   'auth/loginSetUser',
   async (payload, thunkApi) => {
     const {data} = await apiMobile.post('auth/login', {data: payload});
-    console.log(data, 'login');
     return data;
   },
 );

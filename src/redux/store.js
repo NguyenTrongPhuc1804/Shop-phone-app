@@ -11,9 +11,11 @@ import cartSlice from './slices/cartSlice';
 import categorySlice from './slices/categorySlice';
 import favoriteSlice from './slices/favoriteSlice';
 import filterSlice from './slices/filterSlice';
+import firebaseSlice from './slices/commentSlice';
 import productSlice from './slices/productSlice';
 import sliderSlice from './slices/sliderSlice';
 import userSlice from './slices/userSlice';
+import commentSlice from './slices/commentSlice';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
@@ -29,6 +31,7 @@ const rootReducer = combineReducers({
   userSlice,
   cartSlice,
   buySlice,
+  commentSlice,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
