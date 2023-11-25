@@ -75,14 +75,7 @@ export const commentSlice = createSlice({
       }
     },
   },
-  extraReducers: builder => {
-    // builder.addCase(loginSetUser.fulfilled, (state, action) => {
-    //   const {access_token} = action.payload;
-    //   AsyncStorage.setItem('access_token', access_token);
-    //   state.userToken = access_token;
-    //   state.isLogin = true;
-    // });
-  },
+  extraReducers: builder => {},
 });
 export const addComment = createAsyncThunk(
   'comment/addComment',

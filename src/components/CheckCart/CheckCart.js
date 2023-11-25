@@ -38,7 +38,7 @@ const CheckCart = ({item, cart}) => {
       }}
       style={{
         marginBottom: 10,
-        width: cart ? '100%' : 300,
+        width: cart ? '100%' : 250,
         backgroundColor: COLOR.second,
         flexDirection: 'row',
         padding: 10,

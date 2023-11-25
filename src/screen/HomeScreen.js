@@ -47,7 +47,7 @@ const HomeScreen = () => {
       }
     };
     setHeader();
-  }, [userToken]);
+  }, [userToken, isLogin]);
   useEffect(() => {
     dispatch(getProduct()).then(res => {
       setIsSkeleton(false);

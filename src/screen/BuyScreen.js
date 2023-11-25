@@ -1,4 +1,5 @@
 import {View, Text, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import React from 'react';
 import InputCus from '../components/Input/InputCus';
 import CartProduct from '../components/CardProduct/CartProduct';
@@ -38,6 +39,8 @@ const BuyScreen = () => {
           showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
         }
       });
+    } else {
+      showNoti('Vui lòng đăng nhập để có thể mua hàng', 'error');
     }
   };
   useEffect(() => {
@@ -114,8 +117,30 @@ const BuyScreen = () => {
           Mua hàng thành công
         </Text>
         <Text style={{fontSize: 16, color: COLOR.black}}>
-          Mã đơn hàng của bạn là : {bill?.code}
+          Mã đơn hàng của bạn là :
         </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 16, color: COLOR.black}}>{bill?.code}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              Clipboard.setString(bill?.code);
+              showNoti('Đã copy mã đơn hàng vào bộ nhớ đệm');
+            }}
+            style={{
+              backgroundColor: COLOR.third,
+              alignItems: 'center',
+              padding: 5,
+              marginLeft: 5,
+              borderRadius: 5,
+              justifyContent: 'center',
+            }}>
+            <Text style={{color: COLOR.second}}>sao chép</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={{fontSize: 16, color: COLOR.black}}>
           Tổng hóa đơn bạn là : {bill?.amount?.toLocaleString()} đ
         </Text>

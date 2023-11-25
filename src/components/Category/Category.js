@@ -12,7 +12,33 @@ const Category = ({}) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const {category, isLoading} = useSelector(state => state.categorySlice);
+  const listSlide = [
+    {
+      id: 1,
+      image:
+        'https://i.pinimg.com/564x/05/38/a2/0538a2166b0ee8ba45e5ffb38aceb8c8.jpg',
+      name: 'Iphone',
+    },
+    {
+      id: 2,
+      image:
+        'https://i.pinimg.com/564x/f8/e3/4a/f8e34a4763987dcab1c15888cb0830d0.jpg',
+      name: 'Samsung',
+    },
+    {
+      id: 3,
 
+      image:
+        'https://i.pinimg.com/564x/8e/c8/08/8ec808a308cde6ab839ca0d08e6110d2.jpg',
+      name: 'Sony',
+    },
+    {
+      id: 4,
+      image:
+        'https://i.pinimg.com/564x/33/09/3a/33093a1e11e88cbf72bad8e6de8e6a3f.jpg',
+      name: 'Oppo',
+    },
+  ];
   useEffect(() => {
     dispatch(getCategory());
   }, []);
@@ -33,7 +59,7 @@ const Category = ({}) => {
         <FlatList
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={category}
+          data={listSlide}
           renderItem={({item}) => (
             <TouchableOpacity
               onPress={() => {
@@ -44,15 +70,13 @@ const Category = ({}) => {
               }}
               style={{
                 marginRight: 8,
-                borderRadius: 20,
+                borderRadius: 10,
                 marginBottom: 10,
-                flexDirection: 'column',
-                padding: 5,
+                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: '#739072',
-                width: 80,
-                height: 90,
+                padding: 10,
                 shadowColor: '#000',
                 shadowOffset: {
                   width: 0,
@@ -63,7 +87,7 @@ const Category = ({}) => {
 
                 elevation: 6,
               }}>
-              <View style={{width: 60, height: 60}}>
+              <View style={{width: 50, height: 50}}>
                 <Image
                   style={{
                     resizeMode: 'contain',
@@ -76,8 +100,9 @@ const Category = ({}) => {
               </View>
               <Text
                 style={{
+                  marginLeft: 10,
                   textAlign: 'center',
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: '600',
                   color: COLOR.second,
                   marginTop: 5,

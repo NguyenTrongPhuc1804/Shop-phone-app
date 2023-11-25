@@ -25,7 +25,6 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(loginSetUser.fulfilled, (state, action) => {
       const {access_token} = action.payload;
-      AsyncStorage.setItem('access_token', access_token);
       state.userToken = access_token;
       state.isLogin = true;
     });
@@ -35,6 +34,7 @@ export const loginSetUser = createAsyncThunk(
   'auth/loginSetUser',
   async (payload, thunkApi) => {
     const {data} = await apiMobile.post('auth/login', payload);
+    await AsyncStorage.setItem('access_token', data.access_token);
     return data;
   },
 );

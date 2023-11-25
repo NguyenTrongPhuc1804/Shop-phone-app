@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {COLOR} from '../../constant/color';
 import {useNavigation} from '@react-navigation/native';
 
-const InfoList = ({name, onPress}) => {
+const InfoList = ({name, onPress, title}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -19,7 +19,7 @@ const InfoList = ({name, onPress}) => {
       }}>
       <FontAwesome5 name={name} size={28} color={COLOR.primary} />
       <Text style={{fontSize: 16, fontWeight: 'bold', color: COLOR.black}}>
-        Thông tin giao hàng
+        {title}
       </Text>
       <Ionicons name={'chevron-forward'} size={28} color={COLOR.primary} />
     </TouchableOpacity>

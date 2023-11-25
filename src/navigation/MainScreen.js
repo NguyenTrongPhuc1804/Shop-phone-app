@@ -17,6 +17,7 @@ import SearchScreen from '../screen/SearchScreen';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 import Register from '../screen/Register';
+import HistoryScreen from '../screen/HistoryScreen';
 const Stack = createStackNavigator();
 const MainScreen = () => {
   const navigate = useNavigation();
@@ -31,7 +32,7 @@ const MainScreen = () => {
         component={InfoShip}
         options={{
           headerShown: true,
-          title: 'Thông tin giao hàng',
+          title: 'Thông tin người dùng',
           headerTintColor: COLOR.primary,
           headerTitleAlign: 'center',
           headerTitle: () => (
@@ -61,6 +62,36 @@ const MainScreen = () => {
         options={{
           headerShown: true,
           title: 'Thông tin giao hàng',
+          headerTintColor: COLOR.primary,
+          headerTitleAlign: 'center',
+          headerTitle: () => (
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingRight: 10,
+              }}>
+              <BoxSearch />
+              <TouchableOpacity>
+                <Ionicons
+                  name={'cart-outline'}
+                  size={32}
+                  color={COLOR.primary}
+                />
+              </TouchableOpacity>
+            </View>
+          ),
+          headerRight: () => <View style={{}}></View>,
+        }}
+      />
+      <Stack.Screen
+        name="HistoryScreen"
+        component={HistoryScreen}
+        options={{
+          headerShown: true,
+          title: 'Lịch sử mua hàng',
           headerTintColor: COLOR.primary,
           headerTitleAlign: 'center',
           headerTitle: () => (

@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 import React from 'react';
 import InputCus from '../../components/Input/InputCus';
 import CheckCart from '../../components/CheckCart/CheckCart';
@@ -80,7 +80,7 @@ const InfoCart = () => {
   }, [orderItem]);
 
   return (
-    <View>
+    <ScrollView>
       <View style={{paddingHorizontal: 40, marginTop: 20}}>
         <TextInput
           label="Nhập mã đơn hàng của bạn"
@@ -167,7 +167,7 @@ const InfoCart = () => {
       ) : (
         ''
       )}
-    </View>
+    </ScrollView>
   );
 };
 
