@@ -1,6 +1,8 @@
-import {View, FlatList} from 'react-native';
+import {View, FlatList, Text} from 'react-native';
 import React from 'react';
 import Comment from './Comment';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+
 const CommentBox = ({message, showDialog}) => {
   return (
     <View style={{}}>

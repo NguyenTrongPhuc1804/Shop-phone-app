@@ -4,7 +4,9 @@ import moment from 'moment';
 import {COLOR} from '../constant/color';
 import {showDialog} from '../redux/slices/commentSlice';
 import {useDispatch, useSelector} from 'react-redux';
-
+import {format, register} from 'timeago.js';
+import {useEffect} from 'react';
+import {getInfoUser} from '../redux/slices/userSlice';
 const Comment = ({
   name,
   message,
@@ -17,6 +19,29 @@ const Comment = ({
   const dispatch = useDispatch();
   const {isLogin} = useSelector(state => state.authSlice);
   const {user} = useSelector(state => state.userSlice);
+  const localeFunc = (number, index, totalSec) => {
+    return [
+      ['bây giờ', 'right now'],
+      ['%s giây trước', 'in %s seconds'],
+      ['1 phút trước', 'in 1 minute'],
+      ['%s phút trước', 'in %s minutes'],
+      ['1 giờ trước', 'in 1 hour'],
+      ['%s giờ trước', 'in %s hours'],
+      ['1 ngày trước', 'in 1 day'],
+      ['%s ngày trước', 'in %s days'],
+      ['1 tuần trước', 'in 1 week'],
+      ['%s tuần trước', 'in %s weeks'],
+      ['1 tháng trước', 'in 1 month'],
+      ['%s tháng trước', 'in %s months'],
+      ['1 năm trước', 'in 1 year'],
+      ['%s năm trước', 'in %s years'],
+    ][index];
+  };
+  register('vi_VN', localeFunc);
+  useEffect(() => {
+    dispatch(getInfoUser());
+  }, []);
+
   return (
     <>
       <View
@@ -34,8 +59,7 @@ const Comment = ({
           </Text>
 
           <Text style={{color: 'white', fontSize: 14, marginLeft: 5}}>
-            lúc {moment(createAt).format('HH:mm')} ngày{' '}
-            {moment(createAt).format('DD/MM')}
+            {format(createAt, 'vi_VN')}
           </Text>
         </View>
         <Text style={{color: 'white', fontSize: 18}}>{message}</Text>

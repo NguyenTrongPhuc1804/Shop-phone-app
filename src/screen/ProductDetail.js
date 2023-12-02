@@ -58,6 +58,7 @@ const ProductDetail = () => {
     [listComment],
   );
   const handleAddComment = () => {
+    console.log(userOj.name, 'name');
     if (message == '') {
       showNoti('Không để trống bình luận !!', 'error');
       return;
@@ -83,6 +84,9 @@ const ProductDetail = () => {
         }
       });
     }
+  }, [isLogin]);
+
+  useEffect(() => {
     dispatch(getSingleProduct(id)).then(res => {
       dispatch(getProductInCategory({id: res.payload.category_id}));
       commentModal.readComment(setListComment, id);
