@@ -87,7 +87,6 @@ export const addComment = createAsyncThunk(
       listCommentChid: [],
       createAt: new Date(),
     });
-    console.log(name, 'nameslice');
     return data;
   },
 );

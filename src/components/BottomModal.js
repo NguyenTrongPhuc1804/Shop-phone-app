@@ -13,6 +13,8 @@ const BottomModal = ({
   handleSheetChanges,
   item,
 }) => {
+  console.log(item, 'detail');
+
   return (
     <BottomSheetModal
       ref={bottomSheetModalRef}
@@ -51,7 +53,7 @@ const BottomModal = ({
         </Text>
       </View>
       <BottomSheetFlatList
-        data={item?.order_items}
+        data={item.order_items}
         renderItem={({item}) => <CardBottomSheetHistory item={item} />}
         keyExtractor={item => item.id}
         contentContainerStyle={{padding: 10}}

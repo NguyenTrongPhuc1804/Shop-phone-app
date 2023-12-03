@@ -1,6 +1,6 @@
 import {db, firebase} from '../firebase/firebase';
 export const commentModal = {
-  readComment: async (setListComment, idProduct) => {
+  readComment: async (setListComment, idProduct, setLoadingComment) => {
     try {
       const data = await db
         .collection('list-comment')
@@ -17,9 +17,11 @@ export const commentModal = {
             })),
           ),
         );
+      setLoadingComment(false);
 
       return data;
     } catch (e) {
+      setLoadingComment(false);
       console.log(e.message);
     }
   },

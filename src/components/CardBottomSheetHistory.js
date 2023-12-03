@@ -7,14 +7,15 @@ import {useEffect} from 'react';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const CardBottomSheetHistory = ({item}) => {
-  const {productDetail} = useSelector(state => state.productSlice);
   const dispatch = useDispatch();
-
+  // const {productDetail} = useSelector(state => state.productSlice);
+  const [productDetail, setProductDetail] = useState({});
   const [loading, setLoading] = useState(true);
   const newProduct = {...productDetail, quantity: item.quantity};
 
   useEffect(() => {
     dispatch(getSingleProduct(item?.product_id)).then(res => {
+      setProductDetail(res.payload);
       setLoading(false);
     });
   }, []);

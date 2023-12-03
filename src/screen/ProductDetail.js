@@ -29,6 +29,7 @@ import {getInfoUser} from '../redux/slices/userSlice';
 import CommentBox from '../components/CommentBox';
 import {useCallback} from 'react';
 import DialogCus from '../components/DialogCus';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 const {width, height} = Dimensions.get('window');
 
@@ -40,7 +41,10 @@ const ProductDetail = () => {
   const {productDetail} = useSelector(state => state.productSlice);
   const {listProductInCategory} = useSelector(state => state.categorySlice);
   const {isLogin} = useSelector(state => state.authSlice);
+
+  ///state
   const [loading, setLoading] = useState(true);
+  const [loadingComment, setLoadingComment] = useState(true);
   const [num, setNum] = useState(1);
   const [message, setMessage] = useState('');
   const [listComment, setListComment] = useState([]);
@@ -51,6 +55,8 @@ const ProductDetail = () => {
     phone: '',
     address: '',
   });
+
+  //func
   const listCommentSort = useCallback(
     listComment.sort((a, b) => {
       return a.createAt - b.createAt;
@@ -58,7 +64,6 @@ const ProductDetail = () => {
     [listComment],
   );
   const handleAddComment = () => {
-    console.log(userOj.name, 'name');
     if (message == '') {
       showNoti('Không để trống bình luận !!', 'error');
       return;
@@ -89,9 +94,9 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getSingleProduct(id)).then(res => {
       dispatch(getProductInCategory({id: res.payload.category_id}));
-      commentModal.readComment(setListComment, id);
       setLoading(false);
     });
+    commentModal.readComment(setListComment, id, setLoadingComment);
   }, [loading, id]);
 
   if (loading) {
@@ -309,14 +314,46 @@ const ProductDetail = () => {
               </Text>
             </View>
           </View> */}
-          <View style={{maxHeight: 300}}>
-            <FlatList
-              nestedScrollEnabled={true}
-              showsVerticalScrollIndicator={false}
-              data={listCommentSort.reverse()}
-              renderItem={({item}) => <CommentBox message={item} />}
-            />
-          </View>
+          {loadingComment ? (
+            <View style={{maxHeight: 300}}>
+              <SkeletonPlaceholder
+                borderRadius={4}
+                backgroundColor={COLOR.primary}>
+                {[1].map((item, index) => (
+                  <View
+                    key={index}
+                    style={{
+                      width: 200,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: 10,
+                    }}>
+                    <View
+                      style={{width: '100%', height: 50, borderRadius: 10}}
+                    />
+                    <View
+                      style={{
+                        width: '100%',
+                        height: 50,
+                        borderRadius: 10,
+                        marginTop: 10,
+                        marginLeft: 40,
+                      }}
+                    />
+                  </View>
+                ))}
+              </SkeletonPlaceholder>
+            </View>
+          ) : (
+            <View style={{maxHeight: 300}}>
+              <FlatList
+                nestedScrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+                data={listCommentSort.reverse()}
+                renderItem={({item}) => <CommentBox message={item} />}
+              />
+            </View>
+          )}
 
           {!isLogin ? (
             <View>
